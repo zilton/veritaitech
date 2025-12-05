@@ -9,16 +9,26 @@ export const getDriveDirectLink = (urlOrId: string, width: number = 1920): strin
   if (!urlOrId) return '';
 
   // Regex to extract the File ID from various Google Drive URL formats
-  // Supports:
-  // - https://drive.google.com/file/d/FILE_ID/view
-  // - https://drive.google.com/open?id=FILE_ID
   const idRegex = /[-\w]{25,}/;
   const match = urlOrId.match(idRegex);
   
   const id = match ? match[0] : urlOrId;
 
-  // Using the thumbnail endpoint is often more reliable for embedding images
-  // than the 'export=view' endpoint, which can hit rate limits or show virus scan warnings.
-  // 'sz' parameter controls the size (w = width, h = height).
   return `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
+};
+
+/**
+ * Converts a Google Drive share link into a direct video streaming URL.
+ * Note: This uses the 'export=download' endpoint which works for standard HTML5 video tags,
+ * though heavy traffic might hit Drive quotas.
+ */
+export const getDriveVideoSrc = (urlOrId: string): string => {
+  if (!urlOrId) return '';
+  
+  const idRegex = /[-\w]{25,}/;
+  const match = urlOrId.match(idRegex);
+  
+  const id = match ? match[0] : urlOrId;
+  
+  return `https://drive.google.com/uc?export=download&id=${id}`;
 };

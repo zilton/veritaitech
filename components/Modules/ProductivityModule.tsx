@@ -15,6 +15,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import Button from '../UI/Button';
+import { getDriveDirectLink } from '../../utils/googleDrive';
 
 interface ProductivityModuleProps {
   onClose: () => void;
@@ -23,6 +24,10 @@ interface ProductivityModuleProps {
 const ProductivityModule: React.FC<ProductivityModuleProps> = ({ onClose }) => {
   // Simple state for the interactive slider demo
   const [sliderValue, setSliderValue] = useState(75);
+
+  // Google Drive Link for Troop Dashboard
+  const troopDashboardRawLink = "https://drive.google.com/file/d/1GfIvaFen7HbG-gD6fynrGsk4gfRCqsMn/view?usp=drive_link";
+  const troopDashboardUrl = getDriveDirectLink(troopDashboardRawLink);
 
   return (
     <motion.div 
@@ -219,7 +224,7 @@ const ProductivityModule: React.FC<ProductivityModuleProps> = ({ onClose }) => {
              </div>
              <div className="flex-1 w-full">
                <img 
-                 src="https://placehold.co/800x500/ffffff/e2e8f0/png?text=Dashboard+Gestao+de+Tropa" 
+                 src={troopDashboardUrl} 
                  alt="Dashboard largo mostrando gráficos de barras comparando unidades policiais"
                  className="w-full rounded-xl shadow-lg border border-gray-200"
                />

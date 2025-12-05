@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PlayCircle, ArrowRight } from 'lucide-react';
 import Button from '../UI/Button';
-import { getDriveDirectLink, getDriveVideoSrc } from '../../utils/googleDrive';
+import { getDriveDirectLink } from '../../utils/googleDrive';
 import UnderConstructionModal from '../UI/UnderConstructionModal';
 import VideoModal from '../UI/VideoModal';
 
@@ -14,12 +14,13 @@ const Hero: React.FC = () => {
   const dashboardImageRawLink = "https://drive.google.com/file/d/1grtpfNm23fuSWIr7Vpzt6c1EbhPECDBX/view?usp=drive_link";
   const dashboardImageUrl = getDriveDirectLink(dashboardImageRawLink);
 
-  // Google Drive Links for Video Modal
-  const videoRawLink = "https://drive.google.com/file/d/17jMVKrpIg-N2t3DuZtTQQC3drGz6JqSG/view?usp=drive_link";
+  // Google Drive Links for Video Modal Images (Cover and End Screen)
   const coverImageRawLink = "https://drive.google.com/file/d/1kipQ3Y1LL_jMaGozHBMSOa4xwgXhOJax/view?usp=drive_link";
   const endImageRawLink = "https://drive.google.com/file/d/1c5bptybN0zCCccqVdFHGaHpVUb4BFtA9/view?usp=drive_link";
 
-  const videoSrc = getDriveVideoSrc(videoRawLink);
+  // Video Source: Local file in public folder
+  const videoSrc = "/demo_policia.mp4";
+  
   const posterSrc = getDriveDirectLink(coverImageRawLink);
   const endScreenSrc = getDriveDirectLink(endImageRawLink);
 

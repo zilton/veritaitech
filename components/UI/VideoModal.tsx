@@ -15,9 +15,28 @@ const VideoModal: React.FC<VideoModalProps> = ({ onClose, videoSrc, posterSrc, e
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlay = () => {
-    setHasStarted(true);
-    if (videoRef.current) {
-      videoRef.current.play();
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Trigger play immediately on user interaction
+    const playPromise = video.play();
+
+    // Handle the promise returned by play()
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          // Playback started successfully, update UI to remove poster
+          setHasStarted(true);
+        })
+        .catch((error) => {
+          console.error("Video playback failed:", error);
+          // If automatic playback fails (e.g. browser policy), 
+          // still update state so native controls appear and user can try again
+          setHasStarted(true);
+        });
+    } else {
+      // Fallback for older browsers
+      setHasStarted(true);
     }
   };
 
@@ -25,7 +44,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ onClose, videoSrc, posterSrc, e
     setHasEnded(false);
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play();
+      videoRef.current.play().catch(e => console.error("Replay failed", e));
     }
   };
 
@@ -53,6 +72,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ onClose, videoSrc, posterSrc, e
           src={videoSrc}
           onEnded={() => setHasEnded(true)}
           playsInline
+          preload="auto"
         />
 
         {/* Poster / Start Screen */}

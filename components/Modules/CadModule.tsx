@@ -21,12 +21,17 @@ import {
   MousePointer2 
 } from 'lucide-react';
 import Button from '../UI/Button';
+import { getDriveDirectLink } from '../../utils/googleDrive';
 
 interface CadModuleProps {
   onClose: () => void;
 }
 
 const CadModule: React.FC<CadModuleProps> = ({ onClose }) => {
+  // Google Drive Link for Real-Time Map
+  const realTimeMapRawLink = "https://drive.google.com/file/d/1jq1KDWshhqVbObSLNWoQ4wNmojsLixjB/view?usp=drive_link";
+  const realTimeMapUrl = getDriveDirectLink(realTimeMapRawLink);
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 50 }}
@@ -258,8 +263,8 @@ const CadModule: React.FC<CadModuleProps> = ({ onClose }) => {
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 order-2 lg:order-1">
                <img 
-                 src="https://placehold.co/800x600/f1f5f9/192459/png?text=Mapa+da+Forca+em+Tempo+Real" 
-                 alt="Mockup de tela de Mapa da Força mostrando localização de viaturas"
+                 src={realTimeMapUrl} 
+                 alt="Mockup de tela de Mapa da Força mostrando localização de viaturas e efetivo em tempo real"
                  className="w-full rounded-xl shadow-xl border border-gray-200"
                />
             </div>

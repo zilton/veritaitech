@@ -30,6 +30,10 @@ const PlanningModule: React.FC<PlanningModuleProps> = ({ onClose }) => {
   const auditReportRawLink = "https://drive.google.com/file/d/1rgK1vxBqPRuVLzNK6VTz-HdKuU0oivsu/view?usp=drive_link";
   const auditReportUrl = getDriveDirectLink(auditReportRawLink);
 
+  // Google Drive Link for Predictive AI Dashboard
+  const predictiveDashboardRawLink = "https://drive.google.com/file/d/1jD6Vx1CrTROVjr9oafFqhFyQ743xuzz5/view?usp=drive_link";
+  const predictiveDashboardUrl = getDriveDirectLink(predictiveDashboardRawLink);
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 50 }}
@@ -89,7 +93,7 @@ const PlanningModule: React.FC<PlanningModuleProps> = ({ onClose }) => {
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 order-2 lg:order-1">
               <img 
-                src="https://placehold.co/600x400/f8fafc/192459/png?text=Dashboard+IA+Preditiva" 
+                src={predictiveDashboardUrl} 
                 alt="Dashboard mostrando gráfico de probabilidade criminal vs horário"
                 className="rounded-xl shadow-xl w-full"
               />

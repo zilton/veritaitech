@@ -2,8 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PlayCircle, ArrowRight } from 'lucide-react';
 import Button from '../UI/Button';
+import { getDriveDirectLink } from '../../utils/googleDrive';
 
 const Hero: React.FC = () => {
+  // Google Drive Link for the Dashboard Mockup
+  const dashboardImageRawLink = "https://drive.google.com/file/d/1grtpfNm23fuSWIr7Vpzt6c1EbhPECDBX/view?usp=drive_link";
+  const dashboardImageUrl = getDriveDirectLink(dashboardImageRawLink);
+
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 bg-brand-blue overflow-hidden">
       {/* Background Gradient/Decoration */}
@@ -55,9 +60,9 @@ const Hero: React.FC = () => {
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-brand-orange to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50 bg-[#0f1633]">
-                 {/* Placeholder for High-End Dashboard Mockup */}
+                 {/* High-End Dashboard Mockup from Google Drive */}
                  <img 
-                  src="https://placehold.co/800x600/1e293b/ffffff/png?text=PolicIA+Dashboard+Mockup" 
+                  src={dashboardImageUrl} 
                   alt="Interface do Sistema PolicIA exibindo mapas de calor e dados de efetivo em tablet robusto e monitor desktop"
                   className="w-full h-auto object-cover transform transition-transform duration-700 hover:scale-105"
                  />

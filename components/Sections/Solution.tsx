@@ -1,8 +1,13 @@
 import React from 'react';
 import { CheckCircle2, ShieldCheck } from 'lucide-react';
 import Button from '../UI/Button';
+import { getDriveDirectLink } from '../../utils/googleDrive';
 
 const Solution: React.FC = () => {
+  // Google Drive Link for the Solution Diagram
+  const diagramRawLink = "https://drive.google.com/file/d/1egK1Q7aUo3EUDy1j27pZZA-o2wTD13nZ/view?usp=drive_link";
+  const diagramUrl = getDriveDirectLink(diagramRawLink);
+
   return (
     <section id="solucao" className="py-20 bg-brand-gray overflow-hidden">
       <div className="container mx-auto px-6">
@@ -45,9 +50,9 @@ const Solution: React.FC = () => {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white rounded-full opacity-50 blur-3xl z-0"></div>
               
               <img 
-                src="https://placehold.co/800x600/f8fafc/192459/png?text=Fluxo+de+Dados+Isometrico" 
+                src={diagramUrl} 
                 alt="Diagrama isométrico mostrando o fluxo de dados: Planejamento, Escala, Viatura CAD e Relatórios"
-                className="relative z-10 w-full h-auto drop-shadow-2xl rounded-xl"
+                className="relative z-10 w-full h-auto drop-shadow-2xl rounded-xl hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>

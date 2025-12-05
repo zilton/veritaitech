@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, 
@@ -27,11 +27,6 @@ interface CadModuleProps {
 }
 
 const CadModule: React.FC<CadModuleProps> = ({ onClose }) => {
-  // Scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <motion.div 
       initial={{ opacity: 0, y: 50 }}
@@ -320,7 +315,7 @@ const CadModule: React.FC<CadModuleProps> = ({ onClose }) => {
             Conecte a Inteligência à Operação.
           </h2>
           <div className="flex justify-center gap-4 flex-col sm:flex-row">
-            <Button variant="primary">
+            <Button variant="white">
               Falar com Especialista em Integração
             </Button>
             <Button variant="secondary" onClick={onClose}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, 
@@ -15,16 +15,20 @@ import {
   LayoutDashboard 
 } from 'lucide-react';
 import Button from '../UI/Button';
+import { getDriveDirectLink } from '../../utils/googleDrive';
 
 interface PlanningModuleProps {
   onClose: () => void;
 }
 
 const PlanningModule: React.FC<PlanningModuleProps> = ({ onClose }) => {
-  // Scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // Google Drive Link for the Tactical Map
+  const mapImageRawLink = "https://drive.google.com/file/d/1shIqHMP99r7gquHAUtgWm_YI6IwJIATF/view?usp=drive_link";
+  const mapImageUrl = getDriveDirectLink(mapImageRawLink);
+
+  // Google Drive Link for Audit Report
+  const auditReportRawLink = "https://drive.google.com/file/d/1rgK1vxBqPRuVLzNK6VTz-HdKuU0oivsu/view?usp=drive_link";
+  const auditReportUrl = getDriveDirectLink(auditReportRawLink);
 
   return (
     <motion.div 
@@ -65,13 +69,13 @@ const PlanningModule: React.FC<PlanningModuleProps> = ({ onClose }) => {
             <p className="text-blue-100 text-lg leading-relaxed mb-8">
               Transforme estratégias de comando em ações de rua com precisão matemática. O módulo de Planejamento & Ordem de Missão do Polic<span className="text-brand-orange font-bold">IA</span> unifica a cadeia de comando, prevê crimes com confiança superior a 90% e audita cada passo da operação.
             </p>
-            <Button variant="primary">Solicitar Demo do Módulo</Button>
+            <Button variant="white">Agendar Apresentação Técnica</Button>
           </div>
 
           <div className="flex-1 relative">
             <div className="absolute -inset-4 bg-brand-orange/20 rounded-full blur-3xl animate-pulse"></div>
             <img 
-              src="https://placehold.co/800x600/121a40/e65c20/png?text=Mapa+Tatico+com+Hotspots" 
+              src={mapImageUrl} 
               alt="Render flutuante de mapa tático digital com manchas de calor pulsando"
               className="relative rounded-lg shadow-2xl border border-white/10 w-full hover:scale-105 transition-transform duration-500"
             />
@@ -285,7 +289,7 @@ const PlanningModule: React.FC<PlanningModuleProps> = ({ onClose }) => {
             </div>
             <div className="flex-1 bg-gray-50 p-8 rounded-xl border border-gray-100">
                <img 
-                 src="https://placehold.co/600x500/ffffff/192459/png?text=Relatorio+de+Auditoria+Digital" 
+                 src={auditReportUrl} 
                  alt="Exemplo de relatório de auditoria digital e assinatura eletrônica"
                  className="shadow-lg rounded-lg w-full" 
                />
@@ -305,7 +309,7 @@ const PlanningModule: React.FC<PlanningModuleProps> = ({ onClose }) => {
             O Policiamento do Futuro Começa no Planejamento.
           </h2>
           <div className="flex justify-center gap-4 flex-col sm:flex-row">
-            <Button className="bg-white text-brand-orange hover:bg-gray-100">
+            <Button variant="white">
               Agendar Apresentação Técnica
             </Button>
             <Button variant="secondary" onClick={onClose}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, 
@@ -21,11 +21,6 @@ interface ProductivityModuleProps {
 }
 
 const ProductivityModule: React.FC<ProductivityModuleProps> = ({ onClose }) => {
-  // Scroll to top on mount
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   // Simple state for the interactive slider demo
   const [sliderValue, setSliderValue] = useState(75);
 
@@ -73,7 +68,7 @@ const ProductivityModule: React.FC<ProductivityModuleProps> = ({ onClose }) => {
             <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
               O módulo de Produtividade do Polic<span className="text-brand-orange font-bold">IA</span> elimina a subjetividade na avaliação de desempenho. Transforme ações operacionais, assiduidade e resultados em um Score auditável, justo e motivador.
             </p>
-            <Button variant="primary">Conhecer a Metodologia</Button>
+            <Button variant="white">Conhecer a Metodologia</Button>
           </div>
 
           {/* Player Card Visual */}
@@ -430,7 +425,7 @@ const ProductivityModule: React.FC<ProductivityModuleProps> = ({ onClose }) => {
             Substitua o "Achismo" pela Ciência de Dados.
           </h2>
           <div className="flex justify-center gap-4 flex-col sm:flex-row">
-            <Button className="bg-white text-brand-orange hover:bg-gray-100">
+            <Button variant="white">
               Solicitar Demonstração do Score
             </Button>
             <Button variant="secondary" onClick={onClose}>

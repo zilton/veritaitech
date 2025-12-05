@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, 
@@ -16,16 +16,16 @@ import {
   Users
 } from 'lucide-react';
 import Button from '../UI/Button';
+import { getDriveDirectLink } from '../../utils/googleDrive';
 
 interface RosterModuleProps {
   onClose: () => void;
 }
 
 const RosterModule: React.FC<RosterModuleProps> = ({ onClose }) => {
-  // Scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // Google Drive Link for the Roster Module Mockup
+  const rosterImageRawLink = "https://drive.google.com/file/d/1PxlIzvxR2KHmcUaFtwEJ0qnXx1cIPf8j/view?usp=drive_link";
+  const rosterImageUrl = getDriveDirectLink(rosterImageRawLink);
 
   return (
     <motion.div 
@@ -69,47 +69,21 @@ const RosterModule: React.FC<RosterModuleProps> = ({ onClose }) => {
             <p className="text-blue-100 text-lg leading-relaxed mb-8">
               O módulo de Gestão de Escalas do Polic<span className="text-brand-orange font-bold">IA</span> cruza disponibilidade, competências e legislação para gerar turnos à prova de erros. Elimine o retrabalho administrativo e garanta que cada viatura tenha a guarnição certa.
             </p>
-            <Button variant="primary">Ver a Automação em Ação</Button>
+            <Button variant="white">Ver a Automação em Ação</Button>
           </div>
 
           <div className="flex-1 relative w-full">
-            {/* Mockup Container */}
-            <div className="relative bg-white rounded-lg shadow-2xl p-2 border border-gray-700 transform rotate-1 hover:rotate-0 transition-transform duration-500">
-               {/* Header of Fake App */}
-               <div className="bg-gray-100 h-8 rounded-t-md flex items-center px-4 gap-2 border-b border-gray-200">
-                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-400"></div>
-               </div>
-               {/* Body of Fake App */}
-               <div className="bg-gray-50 p-4 rounded-b-md">
-                  <div className="flex justify-between items-center mb-4">
-                     <span className="font-bold text-brand-blue text-sm">Escala Operacional - 1ª Cia</span>
-                     <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold">Validada</span>
-                  </div>
-                  {/* Calendar Grid Mockup */}
-                  <div className="grid grid-cols-7 gap-2 mb-4 text-center text-xs text-gray-500">
-                     <div>SEG</div><div>TER</div><div>QUA</div><div>QUI</div><div>SEX</div><div>SAB</div><div>DOM</div>
-                     {/* Row 1 */}
-                     <div className="bg-white border p-2 rounded text-gray-300">29</div>
-                     <div className="bg-white border p-2 rounded text-gray-300">30</div>
-                     <div className="bg-blue-50 border border-blue-200 p-2 rounded font-bold text-brand-blue">01</div>
-                     <div className="bg-blue-50 border border-blue-200 p-2 rounded font-bold text-brand-blue">02</div>
-                     <div className="bg-blue-50 border border-blue-200 p-2 rounded font-bold text-brand-blue">03</div>
-                     <div className="bg-brand-orange/10 border border-brand-orange/30 p-2 rounded font-bold text-brand-orange relative">
-                        04
-                        <div className="absolute top-0 right-0 w-2 h-2 bg-brand-orange rounded-full -mt-1 -mr-1"></div>
-                     </div>
-                     <div className="bg-blue-50 border border-blue-200 p-2 rounded font-bold text-brand-blue">05</div>
-                  </div>
-                  {/* Suggestion Alert */}
-                  <div className="bg-brand-orange/10 border border-brand-orange/20 p-3 rounded text-xs text-gray-700 flex gap-2 items-start">
-                     <AlertTriangle size={14} className="text-brand-orange shrink-0 mt-0.5" />
-                     <div>
-                        <span className="font-bold text-brand-orange block">Sugestão de Preenchimento:</span>
-                        Lacuna no dia 04 preenchida com Sd. Oliveira (Banco de Horas Positivo).
-                     </div>
-                  </div>
+            {/* Image Container */}
+            <div className="relative rounded-lg shadow-2xl border border-gray-700 transform rotate-1 hover:rotate-0 transition-transform duration-500 overflow-hidden bg-[#0f1633]">
+               <img 
+                 src={rosterImageUrl} 
+                 alt="Interface do Sistema PolicIA - Módulo Gestão de Escalas mostrando calendário e alertas"
+                 className="w-full h-auto object-cover"
+               />
+               
+               {/* Decorative Overlay for context (optional, kept purely aesthetic) */}
+               <div className="absolute bottom-4 right-4 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
+                  Sugestão IA Ativa
                </div>
             </div>
           </div>
@@ -329,7 +303,7 @@ const RosterModule: React.FC<RosterModuleProps> = ({ onClose }) => {
             Sua Tropa no Lugar Certo, na Hora Certa.
           </h2>
           <div className="flex justify-center gap-4 flex-col sm:flex-row">
-            <Button className="bg-white text-brand-orange hover:bg-gray-100">
+            <Button variant="white">
               Solicitar Demonstração
             </Button>
             <Button variant="secondary" onClick={onClose}>
